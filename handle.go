@@ -62,7 +62,7 @@ func getHash(data string, hashType Hash) (hash crypto.Hash, hashed []byte, err e
 	if err != nil {
 		return hash, hashed, err
 	}
-	newHash.Write([]byte(data))
+	//newHash.Write([]byte(data))
 	hashed = newHash.Sum(nil)
 	return hash, hashed, nil
 }
