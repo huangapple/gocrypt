@@ -23,6 +23,7 @@ import "fmt"
 
 //HandleFunc defines the common func for crypt
 type HandleFunc interface {
+	New() HandleFunc
 	setSecretInfo(secretInfo SecretInfo)
 	Encrypt(inputData string, outputDataType Encode) (string, error)
 	Decrypt(inputData string, inputDataType Encode) (string, error)
@@ -59,7 +60,7 @@ func NewCrypt(cryptType Crypt, secretInfo SecretInfo) (HandleFunc, error) {
 	if _, ok := adapters[cryptType]; !ok {
 		return nil, fmt.Errorf("not support the adapterType")
 	}
-	handle := adapters[cryptType]
+	handle := adapters[cryptType].New()
 	handle.setSecretInfo(secretInfo)
 	return handle, nil
 }

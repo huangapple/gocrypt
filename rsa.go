@@ -140,6 +140,10 @@ func (rc *RSACrypt) VerifySign(inputData string, hashType Hash, signData string,
 
 }
 
+func (rc *RSACrypt) New() HandleFunc {
+	return &RSACrypt{}
+}
+
 func init() {
 	register(RSA, &RSACrypt{})
 }
